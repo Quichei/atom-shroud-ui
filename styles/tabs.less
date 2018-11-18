@@ -1,0 +1,103 @@
+
+// Tabs
+// -------------------
+
+// Displays selectable tabs above the editor.
+// Overrides: atom/tabs
+
+.tab-bar {
+  background-color: @tab-bar-background-color;
+  border-bottom: 5px solid @base-border-color;
+  height: @tab-height + @tab-offset * 1.5;
+  padding-left: 10px;
+  padding-right: 10px;
+  .tab {
+    color: @text-color;
+    height: @tab-height;
+    line-height: @tab-height;
+    font-size: @font-size;
+    position: relative;
+    top: 5px;
+    max-width: 170px;
+    padding: 0;
+    margin: 0 12px 0 15px;
+    transition: color 0.2s ease-in;
+    border: none;
+    z-index: 1;
+    box-shadow: inset 0 1px 0 @tab-border-color;
+    padding-left: 10px;
+    padding-right: 28px;
+    margin-top: @tab-offset/2;
+    &.active {
+      height: @tab-height - @tab-offset;
+      font-size:  @font-size * 1.1;
+      font-weight: 600;
+      color: @text-color-selected;
+      z-index: 2;
+      background-color:  @tab-bar-active;
+      &:before{
+          z-index: 2;
+          background-color: @tab-bar-active;
+      }
+      &:after{
+          z-index: 2;
+          background-color:  @tab-bar-active;
+      }
+    }
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0px;
+        width: 25px;
+        height:  @tab-height - @tab-offset;
+        right: -14px;
+        border-top-left-radius: 3px;
+        box-shadow: inset -1px 1px 0 @tab-border-color, 4px 0px 4px rgba(0, 0, 0, 0.1);
+        -webkit-transform: skewX(30deg);
+        background-color: @tab-bar-background-color;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0px;
+        width: 23px;
+        height:  @tab-height - @tab-offset;
+        left: -14px;
+        border-top-left-radius: 3px;
+        box-shadow: inset 1px 1px 0 @tab-border-color, -4px 0px 4px rgba(0, 0, 0, 0.1);
+        -webkit-transform: skewX(-30deg);
+        background-color: @tab-bar-background-color;
+    }
+    // Modified Icon (the circle) -------------------
+    &.modified:not(:hover) .close-icon {
+      top: 50%;
+      right: @component-padding + 4px; // 4px -> half of icon size
+      margin-top: -3px;
+      border-color: @text-color-info;
+    }
+    &.modified:hover .close-icon {
+      color: currentColor;
+    }
+
+
+    // Close Icon (the X) -------------------
+    .close-icon:hover {
+      color: @text-color-selected;
+    }
+    &.active .close-icon:hover {
+      color: @text-color;
+    }
+
+
+    // Dragging -------------------
+    // Styles get applied while dragging a tab
+    &.is-dragging {
+      background: darken(@tab-background-color, 10%);
+      border-color: transparent;
+      opacity: .5;
+      & .close-icon {
+        visibility: hidden;
+      }
+    }
+  }
+}
