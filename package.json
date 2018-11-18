@@ -13,6 +13,7 @@
     "typescript"
   ],
   "repository": "https://github.com/Quichei/atom-shroud-ui",
+  "author": "Farhad Khademi",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
